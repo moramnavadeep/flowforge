@@ -45,7 +45,7 @@ function generateColumn(name: string, field: ForgeField): string {
 
     // Map DrizzleType to Drizzle helper call
     if (field.type === "uuid") {
-        col += field.name === "id"
+        col += name === "id"
             ? `uuid("${name}").primaryKey().defaultRandom()`
             : `uuid("${name}")`;
     } else if (field.type === "boolean") {

@@ -14,7 +14,7 @@ export type {
     ResolvedEntity,
     ForgeField,
     ForgeScalar,
-    ForgeRoute,
+    ForgeRouteDef,
     ResolvedRoute,
     ForgeView,
     ResolvedView,

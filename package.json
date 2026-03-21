@@ -35,15 +35,16 @@
         "prepublishOnly": "npm run typecheck && npm run build"
     },
     "dependencies": {
-        "zod": "^3.25.63",
-        "commander": "^14.0.0",
-        "js-yaml": "^4.1.0",
         "chalk": "^5.4.1",
-        "ora": "^8.2.0",
+        "chokidar": "^4.0.3",
+        "commander": "^14.0.0",
         "esbuild": "^0.25.2",
-        "chokidar": "^4.0.3"
+        "js-yaml": "^4.1.0",
+        "ora": "^8.2.0",
+        "zod": "^3.25.63"
     },
     "devDependencies": {
+        "@types/express": "^5.0.6",
         "@types/js-yaml": "^4.0.9",
         "@types/node": "^22.15.18",
         "tsx": "^4.19.4",

@@ -180,7 +180,7 @@ export function forgeExpressAdapter(
                 params: req.params as Record<string, string>,
                 body: req.body,
                 query: req.query as Record<string, string>,
-                user: (req as Record<string, unknown>).user as IntentContext["user"],
+                user: (req as unknown as Record<string, unknown>).user as IntentContext["user"],
                 meta: {},
             })
             .then((result) => res.json({ data: result }))
