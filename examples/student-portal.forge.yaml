@@ -1,0 +1,157 @@
+# FlowForge intent spec — Student Portal
+# This 47-line file generates a complete backend + database + React UI.
+# Run: forge generate student-portal.forge.yaml
+
+app: StudentPortal
+description: A full-stack student management portal
+version: 1.0.0
+
+# ─── Authentication ───────────────────────────────────────────────────────────
+auth:
+  strategy: jwt
+  userEntity: Admin
+  identifierField: email
+  passwordField: password
+
+# ─── Data Entities ────────────────────────────────────────────────────────────
+entities:
+  Student:
+    plural: Students
+    timestamps: true
+    fields:
+      name:
+        type: string
+        label: Full Name
+        display: true
+        required: true
+      email:
+        type: email
+        label: Email Address
+        unique: true
+        required: true
+      age:
+        type: number
+        label: Age
+        required: false
+      enrolledAt:
+        type: date
+        label: Enrollment Date
+      bio:
+        type: text
+        label: Short Bio
+        required: false
+
+  Course:
+    timestamps: true
+    fields:
+      title:
+        type: string
+        label: Course Title
+        display: true
+        required: true
+      description:
+        type: text
+        required: false
+      credits:
+        type: number
+        default: "3"
+
+  Admin:
+    fields:
+      email:
+        type: email
+        unique: true
+        required: true
+      password:
+        type: string
+        required: true
+      name:
+        type: string
+        display: true
+
+# ─── API Routes ───────────────────────────────────────────────────────────────
+routes:
+  /api/students:
+    get: list Students
+    post:
+      intent: create Student
+      middleware: [auth]
+      roles: [admin]
+
+  /api/students/{id}:
+    get: get Student
+    patch:
+      intent: update Student
+      roles: [admin]
+    delete:
+      intent: delete Student
+      roles: [admin]
+
+  /api/courses:
+    get: list Courses
+    post:
+      intent: create Course
+      roles: [admin]
+
+  /api/courses/{id}:
+    get: get Course
+    patch:
+      intent: update Course
+      roles: [admin]
+    delete:
+      intent: delete Course
+      roles: [admin]
+
+# ─── UI Views ─────────────────────────────────────────────────────────────────
+ui:
+  /students:
+    title: Students
+    table: Student
+
+  /students/new:
+    title: Add Student
+    form: Student
+
+  /courses:
+    title: Courses
+    layout:
+      - component: table
+        entity: Course
+        columns:
+          - title
+          - credits
+          - field: description
+            label: Description
+        actions: [create, edit, delete]
+
+  /courses/new:
+    title: Add Course
+    form: Course
+    roles: [admin]
+
+# ─── Reactive Events ─────────────────────────────────────────────────────────
+events:
+  - on: Student.created
+    do: send welcome email
+    params:
+      template: student-welcome
+
+  - on: Student.deleted
+    do: archive student records
+
+  - on: "*.created"
+    do: audit log entry
+
+# ─── Roles ───────────────────────────────────────────────────────────────────
+roles:
+  admin:
+    description: Full access to all entities
+    permissions:
+      Student: ["*"]
+      Course: ["*"]
+
+  viewer:
+    description: Read-only access
+    permissions:
+      Student: [list, get]
+      Course: [list, get]

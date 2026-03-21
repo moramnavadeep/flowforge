@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+build/
+*.js.map
+*.d.ts
+*.d.ts.map
+
+# Generated code (DO NOT commit — regenerate with `forge generate`)
+forge-generated/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# TypeScript
+tsconfig.tsbuildinfo
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Package manager
+.npm
+yarn.lock
+pnpm-lock.yaml
