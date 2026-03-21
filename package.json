@@ -1,9 +1,23 @@
 {
-    "name": "@workspace/flowforge",
+    "name": "@flowforge_1/flowforge",
     "version": "0.1.0",
     "description": "FlowForge — The world's first Intent-Driven Full-Stack Framework",
+    "author": "",
     "license": "MIT",
+    "keywords": [
+        "framework",
+        "declarative",
+        "api",
+        "drizzle",
+        "express",
+        "react",
+        "codegen"
+    ],
     "type": "module",
+    "files": [
+        "src",
+        "dist"
+    ],
     "bin": {
         "forge": "./dist/cli/index.js"
     },
@@ -17,7 +31,8 @@
     "scripts": {
         "build": "esbuild src/cli/index.ts --bundle --platform=node --format=esm --outfile=dist/cli/index.js --packages=external",
         "dev": "tsx src/cli/index.ts",
-        "typecheck": "tsc --noEmit"
+        "typecheck": "tsc --noEmit",
+        "prepublishOnly": "npm run typecheck && npm run build"
     },
     "dependencies": {
         "zod": "^3.25.63",
