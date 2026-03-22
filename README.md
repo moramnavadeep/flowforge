@@ -427,7 +427,7 @@ flowforge/
 ## 🤝 Contributing
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/flowforge
+git clone https://github.com/moramnavadeep/flowforge.git
 cd flowforge
 npm install
 npm run dev
@@ -444,5 +444,5 @@ MIT — free to use, modify, and distribute.
 ---
 
 <p align="center">
-  Built with ❤️ · <a href="https://github.com/YOUR_USERNAME/flowforge">GitHub</a>
+  Built with ❤️ · <a href="https://github.com/YOUR_USERNAME/flowforge](https://github.com/moramnavadeep)">GitHub</a>
 </p>
