@@ -59,9 +59,9 @@ No other framework treats human-readable *intent strings* as the root source of 
 ## 📦 Installation
 
 ```bash
-npm install -g @flowforge/cli
+npm install -g @flowforge_1/flowforge
 # or in a project:
-npm install @flowforge/core
+npm install @flowforge_1/flowforge
 ```
 
 ---
@@ -178,7 +178,7 @@ Three generators that run from the parsed `ForgeGraph`:
 Unlike URL routers that match HTTP paths, the IntentRouter matches **action intents**:
 
 ```typescript
-import { IntentRouter } from "@flowforge/core";
+import { IntentRouter } from "@flowforge_1/flowforge";
 
 const router = new IntentRouter();
 
@@ -198,7 +198,7 @@ router.register("create Task", async (ctx) => {
 Declare events in YAML, subscribe in code. Wildcard patterns supported:
 
 ```typescript
-import { forgeBus } from "@flowforge/core";
+import { forgeBus } from "@flowforge_1/flowforge";
 
 // Exact match
 forgeBus.on("Task.created", async (e) => {
@@ -215,7 +215,7 @@ forgeBus.on("*.created", async (e) => {
 Register services by token, resolve anywhere — even in request scope via AsyncLocalStorage:
 
 ```typescript
-import { forgeContext } from "@flowforge/core";
+import { forgeContext } from "@flowforge_1/flowforge";
 
 forgeContext.provide("db", () => drizzleClient);
 forgeContext.provide("mailer", () => new SESMailer());
@@ -374,7 +374,7 @@ import {
   ForgeContext,       // Scoped DI via AsyncLocalStorage
   forgeBus,           // Singleton global event bus
   forgeContext,       // Singleton global context
-} from "@flowforge/core";
+} from "@flowforge_1/flowforge";
 ```
 
 ---
